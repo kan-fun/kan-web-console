@@ -24,6 +24,21 @@ export default {
       },
     ],
   },
+  Email: {
+    props: {
+      size: 'large',
+      prefix: <MailTwoTone className={styles.prefixIcon} />,
+      type: 'email',
+      id: 'email',
+      placeholder: '888888',
+    },
+    rules: [
+      {
+        required: true,
+        message: 'Please enter password!',
+      },
+    ],
+  },
   Password: {
     props: {
       size: 'large',

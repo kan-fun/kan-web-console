@@ -1,16 +1,26 @@
 import request from '@/utils/request';
+import { stringify } from 'querystring';
 
 export interface LoginParamsType {
-  userName: string;
+  email: string;
   password: string;
-  mobile: string;
-  captcha: string;
 }
 
+const ENDPOINT = "http://58b5dd3da8514f30a8dfbf42bb0a740c-cn-beijing.alicloudapi.com";
+const login_url = `${ENDPOINT}/login`;
+
+// const login_url = `/api/login`;
+
 export async function fakeAccountLogin(params: LoginParamsType) {
-  return request('/api/login/account', {
+
+  return request(login_url, {
     method: 'POST',
-    data: params,
+    data: stringify(params as any),
+    credentials: 'omit',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    },
+    getResponse: true
   });
 }
 

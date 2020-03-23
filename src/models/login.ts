@@ -37,10 +37,10 @@ const Model: LoginModelType = {
       const response = yield call(fakeAccountLogin, payload);
       yield put({
         type: 'changeLoginStatus',
-        payload: response,
+        payload: response.data,
       });
       // Login successfully
-      if (response.status === 'ok') {
+      if (response.response.status === 200) {
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params as { redirect: string };

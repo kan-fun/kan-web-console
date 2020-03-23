@@ -11,7 +11,7 @@ import LoginFrom from './components/Login';
 
 import styles from './style.less';
 
-const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginFrom;
+const { Tab, UserName, Password, Mobile, Captcha, Submit, Email } = LoginFrom;
 interface LoginProps {
   dispatch: Dispatch<AnyAction>;
   userLogin: StateType;
@@ -47,33 +47,38 @@ const Login: React.FC<LoginProps> = props => {
   return (
     <div className={styles.main}>
       <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
-        <Tab key="account" tab="账户密码登录">
+        <Tab key="account" tab="邮箱密码登录">
           {status === 'error' && loginType === 'account' && !submitting && (
             <LoginMessage content="账户或密码错误（admin/ant.design）" />
           )}
 
-          <UserName
-            name="userName"
-            placeholder="用户名: admin or user"
+          <Email
+            name="email"
+            placeholder="注册邮箱"
             rules={[
               {
                 required: true,
-                message: '请输入用户名!',
+                message: '请输入邮箱',
+              },
+              {
+                type: 'email',
+                message: '请输入合法的邮箱地址',
               },
             ]}
           />
+
           <Password
             name="password"
-            placeholder="密码: ant.design"
+            placeholder="登陆密码"
             rules={[
               {
                 required: true,
-                message: '请输入密码！',
+                message: '请输入密码',
               },
             ]}
           />
         </Tab>
-        <Tab key="mobile" tab="手机号登录">
+        {/* <Tab key="mobile" tab="手机号登录">
           {status === 'error' && loginType === 'mobile' && !submitting && (
             <LoginMessage content="验证码错误" />
           )}
@@ -104,8 +109,8 @@ const Login: React.FC<LoginProps> = props => {
               },
             ]}
           />
-        </Tab>
-        <div>
+        </Tab> */}
+        {/* <div>
           <Checkbox checked={autoLogin} onChange={e => setAutoLogin(e.target.checked)}>
             自动登录
           </Checkbox>
@@ -116,16 +121,16 @@ const Login: React.FC<LoginProps> = props => {
           >
             忘记密码
           </a>
-        </div>
+        </div> */}
         <Submit loading={submitting}>登录</Submit>
         <div className={styles.other}>
-          其他登录方式
+          {/* 其他登录方式
           <AlipayCircleOutlined className={styles.icon} />
           <TaobaoCircleOutlined className={styles.icon} />
-          <WeiboCircleOutlined className={styles.icon} />
-          <Link className={styles.register} to="/user/register">
+          <WeiboCircleOutlined className={styles.icon} /> */}
+          {/* <Link className={styles.register} to="/user/register">
             注册账户
-          </Link>
+          </Link> */}
         </div>
       </LoginFrom>
     </div>
