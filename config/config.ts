@@ -128,18 +128,23 @@ export default {
                   authority: ['admin'],
                 },
               ],
-            },
+            }, // {
+            //   name: 'list.table-list',
+            //   icon: 'table',
+            //   path: '/list',
+            //   component: './ListTableList',
+            // },
             {
-              name: 'list.table-list',
-              icon: 'table',
-              path: '/list',
-              component: './ListTableList',
-            },
-            {
-              name: '空白页面',
-              icon: 'smile',
+              name: '密钥管理',
+              icon: 'KeyOutlined',
               path: '/view-key',
               component: './ViewKey',
+            },
+            {
+              name: '电子邮件',
+              icon: 'MailOutlined',
+              path: '/channel-email',
+              component: './ChannelEmail',
             },
             {
               component: './404',
@@ -208,4 +213,3 @@ export default {
   chainWebpack: webpackPlugin,
   history: 'hash',
 } as IConfig;
-
