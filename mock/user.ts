@@ -84,6 +84,7 @@ export default {
         status: 'ok',
         type,
         currentAuthority: 'admin',
+        token: 'token123456'
       });
       return;
     }
@@ -92,6 +93,7 @@ export default {
         status: 'ok',
         type,
         currentAuthority: 'user',
+        token: 'token123456'
       });
       return;
     }
@@ -100,6 +102,7 @@ export default {
         status: 'ok',
         type,
         currentAuthority: 'admin',
+        token: 'token123456'
       });
       return;
     }
@@ -111,7 +114,7 @@ export default {
     });
   },
   'POST /api/register': (req: Request, res: Response) => {
-    res.send({ status: 'ok', currentAuthority: 'user' });
+    res.send({ status: 'ok', currentAuthority: 'user', token: 'token123456' });
   },
   'GET /api/500': (req: Request, res: Response) => {
     res.status(500).send({

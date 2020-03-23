@@ -2,6 +2,7 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Card, Typography, Alert } from 'antd';
 import React from 'react';
 import { connect } from 'dva';
+import { Redirect } from 'umi';
 import styles from './index.less';
 
 interface KeyPair {
@@ -44,7 +45,14 @@ const CodePreview: React.FC<{}> = ({ children }) => (
   </pre>
 );
 
+const isLogin = localStorage.getItem('token');
+
+
 function key(kayPair: any) {
+  if (!isLogin && window.location.pathname !== '/user/login') {
+    return <Redirect to={`/user/login`} />;
+  }
+
   return (
     <PageHeaderWrapper>
       <Card>

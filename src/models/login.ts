@@ -61,6 +61,7 @@ const Model: LoginModelType = {
     },
 
     logout() {
+      localStorage.removeItem('token');
       const { redirect } = getPageQuery();
       // Note: There may be security issues, please note
       if (window.location.pathname !== '/user/login' && !redirect) {
@@ -76,7 +77,7 @@ const Model: LoginModelType = {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
+      setAuthority(payload.token);
       return {
         ...state,
         status: payload.status,
