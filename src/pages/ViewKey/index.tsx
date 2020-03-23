@@ -1,8 +1,40 @@
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { Card, Typography, Alert } from 'antd';
-import React, { useState, useEffect } from 'react';
-import { Spin } from 'antd';
+import React from 'react';
+import { connect } from 'dva';
 import styles from './index.less';
+
+interface KeyPair {
+  access_key: string,
+  secret_key: string,
+}
+
+const KeyView = ({ keyPair }: { keyPair: KeyPair }) => {
+  return (
+    <div>
+      <Typography.Text strong>
+        <a target="_blank" rel="noopener noreferrer">
+          AccessKey
+          </a>
+      </Typography.Text>
+      <CodePreview>{keyPair.access_key}</CodePreview>
+      <Typography.Text
+        strong
+        style={{
+          marginBottom: 12,
+        }}
+      >
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          SecretKey
+        </a>
+      </Typography.Text>
+      <CodePreview>{keyPair.secret_key}</CodePreview>
+    </div>
+  );
+};
 
 const CodePreview: React.FC<{}> = ({ children }) => (
   <pre className={styles.pre}>
@@ -12,13 +44,7 @@ const CodePreview: React.FC<{}> = ({ children }) => (
   </pre>
 );
 
-export default () => {
-  const [loading, setLoading] = useState<boolean>(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, []);
+function key(kayPair: any) {
   return (
     <PageHeaderWrapper>
       <Card>
@@ -32,26 +58,7 @@ export default () => {
             marginBottom: 24,
           }}
         />
-        <Typography.Text strong>
-          <a target="_blank" rel="noopener noreferrer">
-            AccessKey
-          </a>
-        </Typography.Text>
-        <CodePreview> npm run ui</CodePreview>
-        <Typography.Text
-          strong
-          style={{
-            marginBottom: 12,
-          }}
-        >
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            SecretKey
-        </a>
-        </Typography.Text>
-        <CodePreview> npm run fetch:blocks</CodePreview>
+        <KeyView keyPair={kayPair} />
       </Card>
       <p
         style={{
@@ -68,3 +75,9 @@ export default () => {
     </PageHeaderWrapper>
   );
 };
+
+function mapStateToProps(state: any) {
+  return state.key;
+}
+
+export default connect(mapStateToProps)(key);

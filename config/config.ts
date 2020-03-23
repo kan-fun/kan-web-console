@@ -137,7 +137,7 @@ export default {
             {
               name: '密钥管理',
               icon: 'KeyOutlined',
-              path: '/view-key',
+              path: '/key',
               component: './ViewKey',
             },
             {
