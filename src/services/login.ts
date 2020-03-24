@@ -6,7 +6,7 @@ export interface LoginParamsType {
   password: string;
 }
 
-const ENDPOINT = "http://58b5dd3da8514f30a8dfbf42bb0a740c-cn-beijing.alicloudapi.com";
+const ENDPOINT = "http://api.mlflow.org.cn";
 const login_url = `${ENDPOINT}/login`;
 
 // const login_url = `/api/login`;
