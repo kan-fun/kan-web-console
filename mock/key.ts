@@ -5,8 +5,8 @@ export default {
     'POST /api/view-key': (req: Request, res: Response) => {
         res.json(
             {
-                access_key: 'ak123',
-                secret_key: 'sk456',
+                AccessKey: 'ak123',
+                SecretKey: 'sk456',
             })
     },
 };

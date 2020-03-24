@@ -3,8 +3,8 @@ import * as keyService from '@/services/key';
 export default {
   namespace: 'key',
   state: {
-    access_key: '',
-    secret_key: '',
+    AccessKey: '',
+    SecretKey: '',
   },
   reducers: {
     save(state: any, payload: any) {
@@ -14,13 +14,13 @@ export default {
   },
   effects: {
     *fetch({ payload: { } }, { call, put }: { call: any, put: any }) {
-      const { access_key, secret_key } = yield call(keyService.fetch);
+      const { AccessKey, SecretKey } = yield call(keyService.fetch);
 
       yield put({
         type: 'save',
         data: {
-          access_key,
-          secret_key
+          AccessKey,
+          SecretKey
         },
       });
     },

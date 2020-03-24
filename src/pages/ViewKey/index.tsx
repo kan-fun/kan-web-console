@@ -6,8 +6,8 @@ import { Redirect } from 'umi';
 import styles from './index.less';
 
 interface KeyPair {
-  access_key: string,
-  secret_key: string,
+  AccessKey: string,
+  SecretKey: string,
 }
 
 const KeyView = ({ keyPair }: { keyPair: KeyPair }) => {
@@ -18,7 +18,7 @@ const KeyView = ({ keyPair }: { keyPair: KeyPair }) => {
           AccessKey
           </a>
       </Typography.Text>
-      <CodePreview>{keyPair.access_key}</CodePreview>
+      <CodePreview>{keyPair.AccessKey}</CodePreview>
       <Typography.Text
         strong
         style={{
@@ -32,7 +32,7 @@ const KeyView = ({ keyPair }: { keyPair: KeyPair }) => {
           SecretKey
         </a>
       </Typography.Text>
-      <CodePreview>{keyPair.secret_key}</CodePreview>
+      <CodePreview>{keyPair.SecretKey}</CodePreview>
     </div>
   );
 };
