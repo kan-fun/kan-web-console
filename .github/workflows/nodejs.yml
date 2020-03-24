@@ -23,3 +23,6 @@ jobs:
     - run: npm install
     - run: npm run build
     - run: ./deploy.sh
+      env: # Or as an environment variable
+        ACCESSKEY: ${{ secrets.ACCESSKEY }}
+        SECRETKEY: ${{ secrets.SECRETKEY }}
