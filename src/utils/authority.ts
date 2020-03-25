@@ -1,4 +1,5 @@
 import { reloadAuthorized } from './Authorized';
+import Cookies from 'js-cookie'
 
 // use localStorage to store the authority info, which might be sent from server in actual project.
 export function getAuthority(str?: string): string | string[] {
@@ -25,7 +26,7 @@ export function getAuthority(str?: string): string | string[] {
 }
 
 export function setAuthority(token:string): void {
-  localStorage.setItem('token', token);
+  Cookies.set('token', token, { domain: '.mlflow.org.cn' })
   // auto reload
   reloadAuthorized();
 }

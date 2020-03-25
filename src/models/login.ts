@@ -7,6 +7,8 @@ import { fakeAccountLogin } from '@/services/login';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 
+import Cookies from 'js-cookie'
+
 export interface StateType {
   status?: 'ok' | 'error';
   type?: string;
@@ -61,7 +63,7 @@ const Model: LoginModelType = {
     },
 
     logout() {
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       const { redirect } = getPageQuery();
       // Note: There may be security issues, please note
       if (window.location.pathname !== '/user/login' && !redirect) {

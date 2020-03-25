@@ -4,6 +4,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { Redirect } from 'umi';
 import styles from './index.less';
+import Cookies from 'js-cookie'
 
 interface KeyPair {
   AccessKey: string,
@@ -45,7 +46,7 @@ const CodePreview: React.FC<{}> = ({ children }) => (
   </pre>
 );
 
-const isLogin = localStorage.getItem('token');
+const isLogin = Cookies.get('token');
 
 
 function key(kayPair: any) {
