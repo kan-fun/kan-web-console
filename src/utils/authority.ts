@@ -26,7 +26,7 @@ export function getAuthority(str?: string): string | string[] {
 }
 
 export function setAuthority(token:string): void {
-  Cookies.set('token', token, { domain: '.mlflow.org.cn' })
+  Cookies.set('token', token, { domain: '.kan-fun.com' })
   // auto reload
   reloadAuthorized();
 }
