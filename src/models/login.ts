@@ -1,13 +1,9 @@
-import { Reducer } from 'redux';
-import { Effect } from 'dva';
 import { stringify } from 'querystring';
-import { router } from 'umi';
+import { history, Reducer, Effect } from 'umi';
 
 import { fakeAccountLogin } from '@/services/login';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
-
-import Cookies from 'js-cookie'
 
 export interface StateType {
   status?: 'ok' | 'error';
@@ -39,10 +35,10 @@ const Model: LoginModelType = {
       const response = yield call(fakeAccountLogin, payload);
       yield put({
         type: 'changeLoginStatus',
-        payload: response.data,
+        payload: response,
       });
       // Login successfully
-      if (response.response.status === 200) {
+      if (response.status === 'ok') {
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params as { redirect: string };
@@ -58,16 +54,15 @@ const Model: LoginModelType = {
             return;
           }
         }
-        router.replace(redirect || '/');
+        history.replace(redirect || '/');
       }
     },
 
     logout() {
-      Cookies.remove('token');
       const { redirect } = getPageQuery();
       // Note: There may be security issues, please note
       if (window.location.pathname !== '/user/login' && !redirect) {
-        router.replace({
+        history.replace({
           pathname: '/user/login',
           search: stringify({
             redirect: window.location.href,
@@ -79,8 +74,7 @@ const Model: LoginModelType = {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority('user');
-      Cookies.set('token', payload.token, { domain: '.kan-fun.com' });
+      setAuthority(payload.currentAuthority);
       return {
         ...state,
         status: payload.status,
