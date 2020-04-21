@@ -79,7 +79,8 @@ const Model: LoginModelType = {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.token);
+      setAuthority('user');
+      Cookies.set('token', payload.token, { domain: '.kan-fun.com' });
       return {
         ...state,
         status: payload.status,

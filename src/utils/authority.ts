@@ -25,8 +25,9 @@ export function getAuthority(str?: string): string | string[] {
   return authority;
 }
 
-export function setAuthority(token:string): void {
-  Cookies.set('token', token, { domain: '.kan-fun.com' })
+export function setAuthority(authority: string | string[]): void {
+  const proAuthority = typeof authority === 'string' ? [authority] : authority;
+  localStorage.setItem('antd-pro-authority', JSON.stringify(proAuthority));
   // auto reload
   reloadAuthorized();
 }
